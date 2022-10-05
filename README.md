@@ -1,19 +1,11 @@
-## Windows
+> Some configuration files or commands
 
-[Windows](./windows/)
+- [Windows](./windows/)
 
-## VScode
+- [VScode](./vscode/)
 
-[VScode](./vscode/)
+- [Zsh](./zsh/.zshrc)
 
-## Zsh
+- [Chrome](./chrome/)
 
-[Zsh](./zsh/.zshrc)
-
-## Chrome
-
-[Chrome](./chrome/)
-
-## Obsidian
-
-[Obsidian](./obsidian/.obsidian/)
+- [Obsidian](./obsidian/.obsidian/)
