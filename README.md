@@ -7,5 +7,3 @@
 - [Zsh](./zsh/.zshrc)
 
 - [Chrome](./chrome/)
-
-- [Obsidian](./obsidian/.obsidian/)
