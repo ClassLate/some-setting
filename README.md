@@ -1,4 +1,4 @@
-> Some configuration files or commands
+> dotfile
 
 - [VScode](./vscode/)
 
