@@ -3,5 +3,3 @@
 - [VScode](./vscode/)
 
 - [Zsh](./zsh/.zshrc)
-
-- [Chrome](./chrome/)
