@@ -1,10 +1,6 @@
-# ------------------------------ Zsh configuration ------------------------------
-
-# History
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
 
-# Input/output
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
 bindkey -e
 
@@ -17,29 +13,19 @@ SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 # Remove path separator from WORDCHARS.
 WORDCHARS=${WORDCHARS//[\/]}
 
-
-# ------------------------------ Zim configuration ------------------------------
-
-# Use degit instead of git as the default tool to install and update modules.
-#zstyle ':zim:zmodule' use 'degit'
-
-# -------------------- Module configuration
-
-# git
+# ------------------------------ zim ------------------------------
+# See https://github.com/zimfw/zimfw
 # Set a custom prefix for the generated aliases. The default prefix is 'G'.
-#zstyle ':zim:git' aliases-prefix 'g'
+zstyle ':zim:git' aliases-prefix 'g'
 
-# input
 # Append `../` to your input for each `.` you type after an initial `..`
 zstyle ':zim:input' double-dot-expand yes
 
-# termtitle
 # Set a custom terminal title format using prompt expansion escape sequences.
 # See http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Simple-Prompt-Escapes
 # If none is provided, the default '%n@%m: %~' is used.
-# zstyle ':zim:termtitle' format '%1~'
+#zstyle ':zim:termtitle' format '%1~'
 
-# zsh-autosuggestions
 # Disable automatic widget re-binding on each precmd. This can be set when
 # zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
@@ -48,7 +34,6 @@ ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 # See https://github.com/zsh-users/zsh-autosuggestions/blob/master/README.md#suggestion-highlight-style
 #ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
 
-# zsh-syntax-highlighting
 # Set what highlighters will be used.
 # See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
@@ -58,9 +43,9 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 #typeset -A ZSH_HIGHLIGHT_STYLES
 #ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
 
-# -------------------- Initialize modules 
-
+# Initialize modules
 ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+
 # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
   if (( ${+commands[curl]} )); then
@@ -71,19 +56,16 @@ if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
         https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
   fi
 fi
+
 # Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
   source ${ZIM_HOME}/zimfw.zsh init -q
 fi
+
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
 
-# -------------------- Post-init module configuration
-
-#
 # zsh-history-substring-search
-#
-
 zmodload -F zsh/terminfo +p:terminfo
 # Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
 for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
@@ -93,44 +75,19 @@ for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 unset key
 
 
-# ------------------------------ locale ------------------------------
-# Overriding system locale per user session
-# See https://wiki.archlinux.org/title/Locale#Overriding_system_locale_per_user_session
-unset LANG
-source /etc/profile.d/locale.sh
-
 # ------------------------------ alias ------------------------------
 alias sz="source ~/.zshrc"
 alias dl="cd ~/Downloads"
 alias sl="cd ~/self"
 alias p="cd ~/project"
 alias pp="cd ~/project/practice"
+alias stop="sudo systemctl stop"
+alias start="sudo systemctl start"
 
 # ------------------------------ theme ------------------------------
 # Starship
 # See https://github.com/starship/starship
 eval "$(starship init zsh)"
 
-
 # ------------------------------ fnm ------------------------------
-export PATH=/home/liamrad/.fnm:$PATH
-# eval "`fnm env`"
-eval "$(fnm env --use-on-cd --node-dist-mirror=https://repo.huaweicloud.com/nodejs/)"
-
-
-# ------------------------------ wsl & v2ray ------------------------------
-host_ip=$(cat /etc/resolv.conf |grep "nameserver" |cut -f 2 -d " ")
-function setProxy() {
-  export https_proxy="http://$host_ip:8889"
-  export http_proxy="http://$host_ip:8889"
-  export all_proxy="http://$host_ip:8889"
-  echo "set proxy done"
-}
-function unsetProxy() {
-  unset https_proxy
-  unset http_proxy
-  unset all_proxy
-  echo "unset proxy done"
-}
-alias sp="setProxy"
-alias usp="unsetProxy"
+eval "$(fnm env --use-on-cd --node-dist-mirror=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/)"
