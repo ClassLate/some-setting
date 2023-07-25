@@ -1,0 +1,17 @@
+# ------------------------------ alias ------------------------------
+alias sz="source ~/.zshrc"
+alias dl="cd ~/Downloads"
+alias sl="cd ~/self"
+alias p="cd ~/project"
+alias pp="cd ~/project/practice"
+alias stop="sudo systemctl stop"
+alias start="sudo systemctl start"
+alias status="systemctl status"
+
+# ------------------------------ theme ------------------------------
+# Starship
+# See https://github.com/starship/starship
+eval "$(starship init zsh)"
+
+# ------------------------------ fnm ------------------------------
+eval "$(fnm env --use-on-cd)"
