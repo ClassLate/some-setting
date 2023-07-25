@@ -1,0 +1,23 @@
+# https://prettier.io/docs/en/options.html
+
+printWidth: 80
+# tabWidth: 2 # let decide by editorconfig
+# useTabs: false # let decide by editorconfig
+semi: false
+singleQuote: true
+quoteProps: "preserve"
+jsxSingleQuote: false
+trailingComma: "all"
+bracketSpacing: true
+bracketSameLine: false
+arrowParens: "avoid"
+# rangeStart: 0
+# rangeEnd: Infinity # some parsers not support "Infinity"
+requirePragma: false
+insertPragma: false
+proseWrap: "preserve"
+htmlWhitespaceSensitivity: "css"
+vueIndentScriptAndStyle: false
+# endOfLine: "lf" # let decide by editorconfig
+embeddedLanguageFormatting: "auto"
+singleAttributePerLine: false
