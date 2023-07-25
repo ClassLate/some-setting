@@ -129,4 +129,4 @@ unset key
 # }}} End configuration added by Zim install
 
 # 加载个人配置
-source ~/.zshrc_personal
+source ~/.zshrc.local

@@ -1,3 +1,5 @@
+#! /bin/zsh
+
 # ------------------------------ alias ------------------------------
 alias sz="source ~/.zshrc"
 alias dl="cd ~/Downloads"
