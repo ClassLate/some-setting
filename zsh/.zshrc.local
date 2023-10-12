@@ -1,5 +1,21 @@
 #! /bin/zsh
 
+# ------------------------------ proxy ------------------------------
+function setProxy() {
+  export https_proxy="http://127.0.0.1:20171"
+  export http_proxy="http://127.0.0.1:20171"
+  export all_proxy="http://127.0.0.1:20171"
+  echo "set proxy done"
+}
+function unsetProxy() {
+  unset https_proxy
+  unset http_proxy
+  unset all_proxy
+  echo "unset proxy done"
+}
+alias sp="setProxy"
+alias usp="unsetProxy"
+
 # ------------------------------ alias ------------------------------
 alias sz="source ~/.zshrc"
 alias dl="cd ~/Downloads"
@@ -9,6 +25,7 @@ alias pp="cd ~/project/practice"
 alias stop="sudo systemctl stop"
 alias start="sudo systemctl start"
 alias status="systemctl status"
+alias fq="v2raya --lite"
 
 # ------------------------------ theme ------------------------------
 # Starship
@@ -16,4 +33,5 @@ alias status="systemctl status"
 eval "$(starship init zsh)"
 
 # ------------------------------ fnm ------------------------------
+# See https://github.com/Schniz/fnm
 eval "$(fnm env --use-on-cd)"
